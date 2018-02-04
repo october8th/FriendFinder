@@ -1,0 +1,43 @@
+miss piggy - loves herself short temper
+[5,5,1,4,1,1,5,2,4,2,3,4,1,1,1]
+
+
+swedish chef - loves to cook hard to understand
+[3,5,5,2,3,3,1,3,1,4,1,5,2,3,3]
+
+
+rowlf - loves music - soft spoken - self depricating
+[1,2,4,1,1,2,2,2,1,5,3,4,5,5,5]
+
+
+scooter - loyal hard working on time
+[1,1,1,3,3,5,3,3,1,5,2,4,4,3,4]
+
+
+beaker - hard to understand good helper
+[2,1,4,1,5,4,1,1,1,5,3,1,2,5,3]
+
+
+fozzie bear funny sweet insecure
+[1,5,1,3,1,1,1,5,3,2,3,3,1,1,3]
+
+rizzo sarcastic confident
+[5,5,3,4,3,3,4,3,5,3,2,3,3,3,3]
+
+gonzo eccentric stunt performer daring
+[3,3,4,3,1,3,3,4,3,3,1,3,3,3,3]
+
+kermit leader straight man peace maker
+[3,2,4,4,3,5,5,2,1,5,3,5,5,5,5]
+
+dr. bunsen honeydew inventive aloof clueless
+[4,3,4,1,5,2,2,1,1,2,3,1,2,4,3]
+
+sam eagle patriotic nationalist prude
+[4,2,4,2,3,5,5,1,1,5,5,5,4,5,4]
+
+animal crazy music hard to understand food hungry
+[1,5,1,5,1,1,1,5,1,1,1,1,1,1,1]
+
+
+
