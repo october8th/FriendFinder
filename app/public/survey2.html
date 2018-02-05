@@ -261,9 +261,9 @@
         <div class="modal-body">
           <h2 id="muppet-name"></h2>
           <img id="muppet-img" src="https://vignette.wikia.nocookie.net/muppet/images/8/8b/Tms-muppets-cast.jpg/revision/latest/scale-to-width-down/300?cb=20160916145334" alt="">
-          <h5 id="muppet-bio"></h5>
-          <h5><strong>People who have matched this muppet so far:</strong></h5>
-          <h5 id="muppet-matches"></h5>
+          <h4 id="muppet-bio"></h4>
+          <h3><strong>People who have matched this muppet so far:</strong></h3>
+          <h4 id="muppet-matches"></h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -348,7 +348,7 @@
           $("#results-modal").modal("toggle");
 
           // Clear the form when submitting
-          $('#inputName').val("");
+          /*$('#inputName').val("");
           $('#inputPicture').val("");
           $('#q1').val("");
           $('#q2').val("");
@@ -364,14 +364,10 @@
           $('#q12').val("");
           $('#q13').val("");
           $('#q14').val("");
-          $('#q15').val("");
+          $('#q15').val("");*/
           //return false;
         });
       //return false;
-    }
-    else 
-    {
-      alert("Please fill out all fields before submitting!");
     }
   });
 

@@ -261,9 +261,9 @@
         <div class="modal-body">
           <h2 id="muppet-name"></h2>
           <img id="muppet-img" src="https://vignette.wikia.nocookie.net/muppet/images/8/8b/Tms-muppets-cast.jpg/revision/latest/scale-to-width-down/300?cb=20160916145334" alt="">
-          <h5 id="muppet-bio"></h5>
-          <h5><strong>People who have matched this muppet so far:</strong></h5>
-          <h5 id="muppet-matches"></h5>
+          <h4 id="muppet-bio"></h4>
+          <h3><strong>People who have matched this muppet so far:</strong></h3>
+          <h4 id="muppet-matches"></h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -280,101 +280,68 @@
     // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
     // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
 
-    // Capture the form inputs
-    $(".submitForm").on("click", function(event) 
+    $(".submitForm").on("click", function () 
     {
-      event.preventDefault();
-      // Form validation
-      function validateForm() 
+      //e.preventDefault();
+      // Here we grab the form elements
+      var newSurvey = 
       {
-        var isValid = true;
-        $(".form-control").each(function() 
-        {
-          if ($(this).val() === "") 
-          {
-            isValid = false;
-          }
-        });
+          name: $('#inputName').val().trim(),
+          photo: $('#inputPicture').val().trim(),
+          scores: [$('#q1').val(),$('#q2').val(),$('#q3').val(),$('#q4').val(),$('#q5').val()
+          ,$('#q6').val(),$('#q7').val(),$('#q8').val(),$('#q9').val(),$('#q10').val()
+          ,$('#q11').val(),$('#q12').val(),$('#q13').val(),$('#q14').val(),$('#q15').val()]
+      };
+      //console.log(newSurvey);
+      // This line is the magic. It's very similar to the standard ajax function we used.
+      // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+      // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+      // depending on if a tables is available or not.
 
-        $(".chosen-select").each(function() 
-        {
+      // Here we get the location of the root page.
+      // We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
+      var currentURL = window.location.origin;
 
-          if ($(this).val() === "") 
-          {
-            isValid = false;
-          }
-        });
-        return isValid;
-      }
-
-      // If all required fields are filled
-      if (validateForm()) 
+      $.post(currentURL + "/api/submitSurvey", newSurvey,function (data) 
       {
-        
-        var newSurvey = 
+        // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+        console.log(data);
+        $("#muppet-name").text(data.name);
+        $("#muppet-img").attr("src", data.photo);
+        $("#muppet-bio").text(data.bio);
+        for (var i = 0; i < data.matches.length; i++) 
         {
-            name: $('#inputName').val().trim(),
-            photo: $('#inputPicture').val().trim(),
-            scores: [$('#q1').val(),$('#q2').val(),$('#q3').val(),$('#q4').val(),$('#q5').val()
-            ,$('#q6').val(),$('#q7').val(),$('#q8').val(),$('#q9').val(),$('#q10').val()
-            ,$('#q11').val(),$('#q12').val(),$('#q13').val(),$('#q14').val(),$('#q15').val()]
-        };
-        //console.log(newSurvey);
-        // This line is the magic. It's very similar to the standard ajax function we used.
-        // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-        // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-        // depending on if a tables is available or not.
+            $("#muppet-matches").append(data.matches[i][0]);
+            //$("#muppet-matches").innerHTML += "<img src=" + data.matches[i][1] + ">";
+            $("#muppet-matches").append("<img src= " + data.matches[i][1] + ">");
+            $("#muppet-matches").append ("<br>");
+        }
+        //$("#muppet-matches").text(data.matches);
+        // Show the modal with the best match
+        $("#results-modal").modal("toggle");
 
-        // Here we get the location of the root page.
-        // We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
-        var currentURL = window.location.origin;
-
-        $.post(currentURL + "/api/submitSurvey", newSurvey,function (data) 
-        {
-          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-          console.log(data);
-          $("#muppet-name").text(data.name);
-          $("#muppet-img").attr("src", data.photo);
-          $("#muppet-bio").text(data.bio);
-          for (var i = 0; i < data.matches.length; i++) 
-          {
-              $("#muppet-matches").append(data.matches[i][0]);
-              //$("#muppet-matches").innerHTML += "<img src=" + data.matches[i][1] + ">";
-              $("#muppet-matches").append("<img src= " + data.matches[i][1] + ">");
-              $("#muppet-matches").append ("<br>");
-          }
-          //$("#muppet-matches").text(data.matches);
-          // Show the modal with the best match
-          $("#results-modal").modal("toggle");
-
-          // Clear the form when submitting
-          $('#inputName').val("");
-          $('#inputPicture').val("");
-          $('#q1').val("");
-          $('#q2').val("");
-          $('#q3').val("");
-          $('#q4').val("");
-          $('#q5').val("");
-          $('#q6').val("");
-          $('#q7').val("");
-          $('#q8').val("");
-          $('#q9').val("");
-          $('#q10').val("");
-          $('#q11').val("");
-          $('#q12').val("");
-          $('#q13').val("");
-          $('#q14').val("");
-          $('#q15').val("");
-          //return false;
-        });
+        // Clear the form when submitting
+        /*$('#inputName').val("");
+        $('#inputPicture').val("");
+        $('#q1').val("");
+        $('#q2').val("");
+        $('#q3').val("");
+        $('#q4').val("");
+        $('#q5').val("");
+        $('#q6').val("");
+        $('#q7').val("");
+        $('#q8').val("");
+        $('#q9').val("");
+        $('#q10').val("");
+        $('#q11').val("");
+        $('#q12').val("");
+        $('#q13').val("");
+        $('#q14').val("");
+        $('#q15').val("");*/
+        //return false;
+      });
       //return false;
-    }
-    else 
-    {
-      alert("Please fill out all fields before submitting!");
-    }
-  });
-
+    });
 </script>
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
     
