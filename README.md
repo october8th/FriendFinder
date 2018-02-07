@@ -43,7 +43,7 @@ Simply fill in the simple survey, including your name and your picture, and Mupp
 ## More Project Details
 FriendFinder (MuppetFinder) Is a javascript node application running on heroku.  It uses the express module. 
 
-1. The initial page welcomes you and gives you the option to begin the survey or view the rap API data or go to the git repository.
+1. The initial page welcomes you and gives you the option to begin the survey or view the raw API data or go to the git repository.
 
 2. The survey asks you for your name, picture and the answers to 15 questions.
 
